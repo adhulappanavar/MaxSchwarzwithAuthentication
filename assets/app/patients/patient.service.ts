@@ -8,7 +8,7 @@ export class PatientService {
       patients : Patient [] = [
          {
              "patientId": "2",
-             "patientName": "Patient Name 2 from Patient Service",
+             "patientName": "Patient Name 2 from Patient Service using git branch",
              "patientCode": "Patient Code 2",
              "admissionDate": "March 18, 2002",
              "description": "Patient no 2",
