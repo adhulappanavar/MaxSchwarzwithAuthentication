@@ -8,6 +8,5 @@ bower_components
 .vs
 **/*.sou
 **/*.user
-bin
 obj
 packages
