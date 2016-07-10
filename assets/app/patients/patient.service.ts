@@ -5,7 +5,7 @@ import 'rxjs/Rx';
 import {Observable} from "rxjs/Observable";
 @Injectable()
 export class PatientService {
-      patients : any [] = [
+      patients : Patient [] = [
          {
              "patientId": "2",
              "patientName": "Patient Name 2 from Patient Service",
