@@ -18,32 +18,31 @@ import {PatientService} from "./patient.service";
             font-size: 12px;
             width: 19%;
         }
-    `],
-// directives: [PatientComponent]
+    `]
+//    directives: [PatientComponent]
 })
 export class PatientListComponent {
     pageTitle: string = 'Patients List Component - 4';
 
+        constructor(private _patientService: PatientService) {}
+
      patients : Patient [] = [];
-  
-    constructor(private _patientService: PatientService) {}
+
+   // ngOnInit() {
+   //     this.patients = this._patientService.getPatientsLocalJson();
+   // }
+
     ngOnInit() {
-        this.patients = this._patientService.getPatients();
+       this._patientService.getPatients()
+            .subscribe(
+                patients => {
+                    this.patients = patients;
+                    this._patientService.patients = patients;
+                },
+                error => console.error(error)
+            );
     }
 
-
-//    patients: Patient[];
-//
-//    ngOnInit() {
-//        this._patientService.getMessages()
-//            .subscribe(
- //               patients => {
- //                   this.patients = messages;
- //                   this._PatientService.patients = patients;
- //               },
- //               error => console.error(error)
- //           );
- //   }
 
 //    belongsToUser() {
 //        return localStorage.getItem('userId') == this.usercomment.userId;

@@ -5,6 +5,10 @@ import 'rxjs/Rx';
 import {Observable} from "rxjs/Observable";
 @Injectable()
 export class PatientService {
+ //   patients: Patient[] = [];
+  
+    constructor (private _http: Http) {}
+
       patients : Patient [] = [
          {
              "patientId": "2",
@@ -31,23 +35,30 @@ export class PatientService {
              "imageUrl": "http://openclipart.org/image/300px/svg_to_png/73/rejon_Hammer.png"
          }
      ];
-    
-    getPatients() {
+    patientIsEdit = new EventEmitter<Patient>();
+  
+    getPatientsLocalJson() {
         return this.patients;
     }   
 
-//    getMessages() {
-//        return this._http.get('http://localhost:3000/message')
-//            .map(response => {
-//                const data = response.json().obj;
-//                let objs: any[] = [];
-//                for (let i = 0; i < data.length; i++) {
-//                    let message = new Message(data[i].content, data[i]._id, 'Dummy', data[i].user._id);
-//                    objs.push(message);
-//                }
-//                return objs;
-//            })
-//            .catch(error => Observable.throw(error.json()));
-//    }
+    getPatients() {
+        return this._http.get('http://localhost:3000/patient')
+            .map(response => {
+                const data = response.json();
+                let objs: any[] = [];
+                for (let i = 0; i < data.length; i++) {
+                    let patient = 
+                        new Patient (data[i].patientName, 
+                                    data[i].patientId, 
+                                    data[i].patientCode, 
+                                    data[i].admissionDate, 
+                                    data[i].description, 
+                                    data[i].imageUrl);
+                    objs.push(patient);
+                }
+                return objs;
+            })
+            .catch(error => Observable.throw(error.json()));
+            }
 
 }
