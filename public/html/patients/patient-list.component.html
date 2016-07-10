@@ -32,8 +32,8 @@
                         <td>{{ patient.admissionDate }}</td>
                         <td>
                             <div class="config" *ngIf="belongsToUser()">
-                                    <a (click)="onEdit()">Edit</a>
-                                    <a (click)="onDelete()">Delete</a>
+                                    <a (click)="onEdit($event, patient)">Edit</a>
+                                    <a (click)="onDelete($event, patient)">Delete</a>
                             </div>
                         </td>
                     </tr>  

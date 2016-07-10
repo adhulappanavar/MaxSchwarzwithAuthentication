@@ -1,7 +1,7 @@
 import {Component, OnInit} from "angular2/core";
 import {PatientComponent} from "./patient.component";
 //import {Patient} from "./patient";
-//import {MessageService} from "./patient.service";
+import {PatientService} from "./patient.service";
 @Component({
     selector: 'my-patient-list',
     templateUrl: 'html/patients/patient-list.component.html',
@@ -22,7 +22,7 @@ import {PatientComponent} from "./patient.component";
 // directives: [PatientComponent]
 })
 export class PatientListComponent {
-    pageTitle: string = 'Patients List Component';
+    pageTitle: string = 'Patients List Component - 4';
 
      patients : any [] = [
          {
@@ -40,10 +40,22 @@ export class PatientListComponent {
              "admissionDate": "March 18, 2005",
              "description": "Patient no 5",  
              "imageUrl": "http://openclipart.org/image/300px/svg_to_png/73/rejon_Hammer.png"
+         },
+                  {
+            "patientId": "7",
+             "patientName": "Patient Name 7",
+             "patientCode": "Patient Code 7",
+             "admissionDate": "March 18, 2007",
+             "description": "Patient no 7",  
+             "imageUrl": "http://openclipart.org/image/300px/svg_to_png/73/rejon_Hammer.png"
          }
      ];
 
-//    constructor(private _patientService: PatientService) {}
+    constructor(private _patientService: PatientService) {}
+    ngOnInit() {
+        this.patients = this._patientService.getPatients();
+    }
+
 
 //    patients: Patient[];
 //
@@ -65,4 +77,11 @@ export class PatientListComponent {
     belongsToUser() {
         return true;
     }
+
+       onEdit(event : string, patient : any[]) {
+           console.log(event, patient);
+
+//        this._messageService.editMessage(this.message);
+    }
+
 }
