@@ -8,7 +8,7 @@ var mongoose = require('mongoose');
 
 var appRoutes = require('./routes/app');
 var messageRoutes = require('./routes/messages');
-var patientRoutes = require('./routes/patients');
+var usercommentRoutes = require('./routes/usercomments');
 
 var userRoutes = require('./routes/users');
 
@@ -34,7 +34,7 @@ app.use(function(req, res, next) {
 });
 
 app.use('/message', messageRoutes);
-app.use('/patient', patientRoutes);
+app.use('/usercomment', usercommentRoutes);
 app.use('/user', userRoutes);
 app.use('/', appRoutes);
 

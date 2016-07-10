@@ -3,12 +3,12 @@ var router = express.Router();
 var jwt = require('jsonwebtoken');
 
 
-var Patient = require('../models/patient');
+var Usercomment = require('../models/usercomment');
 var User = require('../models/user');
 
 
 router.get('/', function(req, res, next) {
-    Patient.find()
+    Usercomment.find()
         .populate('user', 'firstName')
         .exec(function(err, docs) {
             if (err) {
@@ -18,7 +18,7 @@ router.get('/', function(req, res, next) {
                 });
             }
             res.status(200).json({
-                patient: 'Success',
+                usercomment: 'Success',
                 obj: docs
             });
         });
@@ -45,21 +45,21 @@ router.post('/', function(req, res, next) {
                 error: err
             });
         }
-        var patient = new Patient({
+        var usercomment = new Usercomment({
             content: req.body.content,
             user: doc
         });
-        patient.save(function(err, result) {
+        usercomment.save(function(err, result) {
             if (err) {
                 return res.status(404).json({
                     title: 'An error occurred',
                     error: err
                 });
             }
-            doc.patients.push(result);
+            doc.usercomments.push(result);
             doc.save();
             res.status(201).json({
-                patient: 'Saved patient',
+                usercomment: 'Saved usercomment',
                 obj: result
             });
         });
@@ -68,7 +68,7 @@ router.post('/', function(req, res, next) {
 
 router.patch('/:id', function(req, res, next) {
     var decoded = jwt.decode(req.query.token);
-    Patient.findById(req.params.id, function(err, doc) {
+    Usercomment.findById(req.params.id, function(err, doc) {
         if (err) {
             return res.status(404).json({
                 title: 'An error occurred',
@@ -77,8 +77,8 @@ router.patch('/:id', function(req, res, next) {
         }
         if (!doc) {
             return res.status(404).json({
-                title: 'No patient found',
-                error: {patient: 'Patient could not be found'}
+                title: 'No usercomment found',
+                error: {usercomment: 'Usercomment could not be found'}
             });
         }
         console.log(doc.user);
@@ -86,7 +86,7 @@ router.patch('/:id', function(req, res, next) {
         if (doc.user != decoded.user._id) {
             return res.status(401).json({
                 title: 'Not Authorized',
-                error: {patient: 'Patient created by other user'}
+                error: {usercomment: 'Usercomment created by other user'}
             });
         }
         doc.content = req.body.content;
@@ -98,7 +98,7 @@ router.patch('/:id', function(req, res, next) {
                 });
             }
             res.status(200).json({
-                patient: 'Success',
+                usercomment: 'Success',
                 obj: result
             });
         });
@@ -107,7 +107,7 @@ router.patch('/:id', function(req, res, next) {
 
 router.delete('/:id', function(req, res, next) {
     var decoded = jwt.decode(req.query.token);
-    Patient.findById(req.params.id, function(err, doc) {
+    Usercomment.findById(req.params.id, function(err, doc) {
         if (err) {
             return res.status(404).json({
                 title: 'An error occurred',
@@ -116,14 +116,14 @@ router.delete('/:id', function(req, res, next) {
         }
         if (!doc) {
             return res.status(404).json({
-                title: 'No patient found',
-                error: {patient: 'Patient could not be found'}
+                title: 'No usercomment found',
+                error: {usercomment: 'Usercomment could not be found'}
             });
         }
         if (doc.user != decoded.user._id) {
             return res.status(401).json({
                 title: 'Not Authorized',
-                error: {patient: 'Patient created by other user'}
+                error: {usercomment: 'Usercomment created by other user'}
             });
         }
         doc.remove(function(err, result) {
@@ -134,7 +134,7 @@ router.delete('/:id', function(req, res, next) {
                 });
             }
             res.status(200).json({
-                patient: 'Success',
+                usercomment: 'Success',
                 obj: result
             });
         });

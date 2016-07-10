@@ -1,0 +1,11 @@
+
+    <td>{{ patient.patientName }}</td>
+    <td>{{ patient.patientCode }}</td>
+    <td>{{ patient.admissionDate }}</td>
+    <td>
+        <div class="config" *ngIf="belongsToUser()">
+                <a (click)="onEdit()">Edit</a>
+                <a (click)="onDelete()">Delete</a>
+        </div>
+    </td>
+

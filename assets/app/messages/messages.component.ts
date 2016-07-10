@@ -4,6 +4,7 @@ import {MessageListComponent} from "./message-list.component";
 @Component({
     selector: 'my-messages',
     template: `
+
         <div class="row spacing">
             <my-message-input></my-message-input>
         </div>
@@ -14,5 +15,6 @@ import {MessageListComponent} from "./message-list.component";
     directives: [MessageListComponent, MessageInputComponent]
 })
 export class MessagesComponent {
+   
     
 }

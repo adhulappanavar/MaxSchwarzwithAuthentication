@@ -1,0 +1,15 @@
+                  <tr *ngFor='#patient of patients'>
+                        <td>{{ patient.patientName }}</td>
+                        <td>{{ patient.patientCode }}</td>
+                        <td>{{ patient.admissionDate }}</td>
+                        <td>
+                            <div class="config" *ngIf="belongsToUser()">
+                            <a (click)="onEdit()">Edit</a>
+                            <a (click)="onDelete()">Delete</a>
+                            </div>
+                        </td>
+                    </tr>
+
+        <section class="col-md-8 col-md-offset-2">
+            <my-message *ngFor="#message of messages" [message]="message" (editClicked)="message.content = $event"></my-message>     
+        </section>

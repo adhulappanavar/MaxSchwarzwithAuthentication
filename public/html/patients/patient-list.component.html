@@ -1,0 +1,46 @@
+<div><h3>Public {{pageTitle}}</h3></div>
+<div class='panel panel-primary'>
+    <div class='panel-heading'>
+        {{pageTitle}}
+    </div>
+    <div class='panel-body'>
+        <div class='row'>
+            <div class='col-md-2'>Filter by:</div>
+            <div class='col-md-4'>
+                <input type='text' />
+            </div>
+        </div>
+        <div class='row'>
+            <div class='col-md-6'>
+                <h3>Filtered by: </h3>
+            </div>
+        </div>
+        <div class='table-responsive'>
+            <table class='table' *ngIf='patients && patients.length'>
+                <thead>
+                    <tr>
+                        <th>Patient Name</th>
+                        <th>Patient Code</th>
+                        <th>Admission Date</th>
+                        <th>Edit/Delete</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="#patient of patients"> 
+                        <td>{{ patient.patientName }}</td>
+                        <td>{{ patient.patientCode }}</td>
+                        <td>{{ patient.admissionDate }}</td>
+                        <td>
+                            <div class="config" *ngIf="belongsToUser()">
+                                    <a (click)="onEdit()">Edit</a>
+                                    <a (click)="onDelete()">Delete</a>
+                            </div>
+                        </td>
+                    </tr>  
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+ 

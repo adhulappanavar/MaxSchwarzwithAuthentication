@@ -1,23 +1,18 @@
 import {Component, Input, Output, EventEmitter} from "angular2/core";
 import {Patient} from "./patient";
-import {PatientService} from "./patient.service";
+//import {MessageService} from "./message.service";
 @Component({
     selector: 'my-patient',
     template: `
-        <article class="panel panel-default">
-            <div class="panel-body">
-                {{ patient.content }}
-            </div>
-            <footer class="panel-footer">
-                <div class="author">
-                    {{ patient.username }}
-                </div>
-                <div class="config" *ngIf="belongsToUser()">
-                    <a (click)="onEdit()">Edit</a>
-                    <a (click)="onDelete()">Delete</a>
-                </div>
-            </footer>
-        </article>
+                <td>{{ patient.patientName }}</td>
+                <td>{{ patient.patientCode }}</td>
+                <td>{{ patient.admissionDate }}</td>
+                <td>
+                    <div class="config" *ngIf="belongsToUser()">
+                        <a (click)="onEdit()">Edit</a>
+                        <a (click)="onDelete()">Delete</a>
+                    </div>
+                </td>
     `,
     styles: [`
         .author {
@@ -36,23 +31,24 @@ import {PatientService} from "./patient.service";
 })
 export class PatientComponent {
     @Input() patient:Patient;
-    @Output() editClicked = new EventEmitter<string>();
+//    @Output() editClicked = new EventEmitter<string>();
 
-    constructor (private _patientService: PatientService) {}
+//    constructor (private _messageService: MessageService) {}
 
     onEdit() {
-        this._patientService.editPatient(this.patient);
+//        this._messageService.editMessage(this.message);
     }
 
     onDelete() {
-        this._patientService.deletePatient(this.patient)
-            .subscribe(
-                data => console.log(data),
-                error => console.error(error)
-            );
+//        this._messageService.deleteMessage(this.message)
+//            .subscribe(
+//                data => console.log(data),
+//                error => console.error(error)
+//            );
     }
 
     belongsToUser() {
-        return localStorage.getItem('userId') == this.patient.userId;
+        return true;
+ //       return localStorage.getItem('userId') == this.message.userId;
     }
 }
