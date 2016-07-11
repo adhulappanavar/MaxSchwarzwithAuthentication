@@ -52,10 +52,10 @@ export class PatientListComponent {
         return true;
     }
 
-       onEdit(event : string, patient : any[]) {
+       onEdit(event : string, patient : Patient) {
            console.log(event, patient);
 
-//        this._messageService.editMessage(this.message);
+        this._patientService.editPatient(patient);
     }
 
 }

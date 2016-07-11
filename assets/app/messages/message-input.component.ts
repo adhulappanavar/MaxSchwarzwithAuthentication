@@ -19,7 +19,7 @@ import {MessageService} from "./message.service";
 export class MessageInputComponent implements OnInit {
     message: Message = null;
 
-    constructor(private _messageService: MessageService) {}
+constructor(private _messageService: MessageService) {}
 
     onSubmit(form:any) {
         if (this.message) {

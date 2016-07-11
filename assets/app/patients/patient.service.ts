@@ -5,11 +5,12 @@ import 'rxjs/Rx';
 import {Observable} from "rxjs/Observable";
 @Injectable()
 export class PatientService {
- //   patients: Patient[] = [];
+    patients: Patient[] = [];
+    patientIsEdit = new EventEmitter<Patient>();
   
     constructor (private _http: Http) {}
 
-      patients : Patient [] = [
+      patientsLocal : Patient [] = [
          {
              "patientId": "2",
              "patientName": "Patient Name 2 from Patient Service using git branch",
@@ -35,10 +36,10 @@ export class PatientService {
              "imageUrl": "http://openclipart.org/image/300px/svg_to_png/73/rejon_Hammer.png"
          }
      ];
-    patientIsEdit = new EventEmitter<Patient>();
+
   
     getPatientsLocalJson() {
-        return this.patients;
+        return this.patientsLocal;
     }   
 
     getPatients() {
@@ -60,5 +61,29 @@ export class PatientService {
             })
             .catch(error => Observable.throw(error.json()));
             }
+
+    addPatient(patient: Patient) {
+        const body = JSON.stringify(patient);
+        const headers = new Headers({'Content-Type': 'application/json'});
+//        const token = localStorage.getItem('token') ? '?token=' + localStorage.getItem('token') : '';
+        return this._http.post('http://localhost:3000/message', body, {headers: headers})
+            .map(response => {
+                const data = response.json().obj;
+                        let patient = 
+                        new Patient (data.patientName, 
+                                    data.patientId, 
+                                    data.patientCode, 
+                                    data.admissionDate, 
+                                    data.description, 
+                                    data.imageUrl);
+                return patient;
+            })
+            .catch(error => Observable.throw(error.json()));
+    }
+
+    editPatient(patient: Patient) {
+        this.patientIsEdit.emit(patient);
+    }
+
 
 }
