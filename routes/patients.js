@@ -51,6 +51,30 @@ router.get('/', function(req, res, next) {
         });
 });
 
+router.post('/', function(req, res, next) {
+        var patient = new Patient({
+            patientId       : req.body.patientId,
+            patientName     : req.body.patientName,
+            patientCode     : req.body.patientCode,
+            admissionDate   : req.body.admissionDate,
+            description     : req.body.description,
+            imageUrl        : req.body.imageUrl
+           });
+        patient.save(function(err, result) {
+            if (err) {
+                return res.status(404).json({
+                    title: 'An error occurred',
+                    error: err
+                });
+            }
+            res.status(201).json({
+                message: 'Saved message',
+                obj: result
+            });
+        });
+});
+
+
 router.use('/', function(req, res, next) {
     jwt.verify(req.query.token, 'secret', function(err, decoded) {
         if (err) {
