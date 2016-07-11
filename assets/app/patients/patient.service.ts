@@ -44,7 +44,7 @@ export class PatientService {
     getPatients() {
         return this._http.get('http://localhost:3000/patient')
             .map(response => {
-                const data = response.json();
+                const data = response.json().obj;;
                 let objs: any[] = [];
                 for (let i = 0; i < data.length; i++) {
                     let patient = 
