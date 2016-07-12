@@ -16,7 +16,7 @@ import {PatientService} from "./patient.service";
 })
 export class PatientInputComponent{
         pageTitle: string = 'Patient Input Component url';
-        patient : Patient = null;
+        patient : Patient;
         myForm: ControlGroup;
 
     constructor(private _fb:FormBuilder, private _patientService: PatientService) {}
@@ -29,14 +29,14 @@ export class PatientInputComponent{
             this.patient.patientCode = this.myForm.value.patientCode;
             this.patient.admissionDate = this.myForm.value.admissionDate;
             this.patient.imageUrl = this.myForm.value.imageUrl;
-//            this._patientService.updatePatient(this.patient)
-//                .subscribe(
-//                    data => console.log(data),
-//                    error => console.error(error)
-//                );
+            this._patientService.updatePatient(this.patient)
+                .subscribe(
+                    data => console.log(data),
+                    error => console.error(error)
+                );
             this.patient = null;
         } else {
-            const patient:Patient = new Patient(this.myForm.value.patientId, this.myForm.value.patientName, this.myForm.value.patientCode, this.myForm.value.admissionDate, this.myForm.value.imageUrl);
+            const patient:Patient = new Patient(this.myForm.value.patientId, this.myForm.value.patientName, this.myForm.value.patientCode, this.myForm.value.admissionDate, this.myForm.value.imageUrl, null);
             this._patientService.addPatient(patient)
                 .subscribe(
                     data => {

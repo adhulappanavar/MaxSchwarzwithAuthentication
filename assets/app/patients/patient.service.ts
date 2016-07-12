@@ -54,7 +54,8 @@ export class PatientService {
                                     data[i].patientCode, 
                                     data[i].admissionDate, 
                                     data[i].description, 
-                                    data[i].imageUrl);
+                                    data[i].imageUrl,
+                                    data[i]._id);
                     objs.push(patient);
                 }
                 return objs;
@@ -75,7 +76,8 @@ export class PatientService {
                                     data.patientCode, 
                                     data.admissionDate, 
                                     data.description, 
-                                    data.imageUrl);
+                                    data.imageUrl,
+                                    data._id);
                 return patient;
             })
             .catch(error => Observable.throw(error.json()));
@@ -84,6 +86,17 @@ export class PatientService {
     editPatient(patient: Patient) {
         this.patientIsEdit.emit(patient);
     }
+
+
+  updatePatient(patient: Patient) {
+        const body = JSON.stringify(patient);
+        const headers = new Headers({'Content-Type': 'application/json'});
+ //       const token = localStorage.getItem('token') ? '?token=' + localStorage.getItem('token') : '';
+        return this._http.patch('http://localhost:3000/patient/' + patient.mongoId, body, {headers: headers})
+            .map(response => response.json())
+            .catch(error => Observable.throw(error.json()));
+    }
+
 
 
 }

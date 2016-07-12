@@ -3,20 +3,20 @@
             <form [ngFormModel]="myForm" (ngSubmit)="onSubmit()">
                 <div class="form-group">
                     <label for="patientId">Patient Id</label>
-                    <input [ngFormControl]="myForm.find('patientId')" type="text" id="patientId" class="form-control">
+                    <input [ngFormControl]="myForm.find('patientId')" type="text" id="patientId" class="form-control" #input [value]="patient?.patientId">
                 </div>
    
                 <div class="form-group">
                     <label for="patientName">Patient Name</label>
-                    <input [ngFormControl]="myForm.find('patientName')" type="text" id="patienttName" class="form-control">
+                    <input [ngFormControl]="myForm.find('patientName')" type="text" id="patienttName" class="form-control"  #input [value]="patient?.patientName">
                 </div>
                <div class="form-group">
                     <label for="admissionDate">Admission Date</label>
-                    <input [ngFormControl]="myForm.find('admissionDate')" type="admissionDate" id="admissionDate" class="form-control">
+                    <input [ngFormControl]="myForm.find('admissionDate')" type="admissionDate" id="admissionDate" class="form-control" #input [value]="patient?.admissionDate">
                 </div>
                 <div class="form-group">
                     <label for="imageUrl">Image Url</label>
-                    <input [ngFormControl]="myForm.find('imageUrl')" type="imageUrl" id="imageUrl" class="form-control">
+                    <input [ngFormControl]="myForm.find('imageUrl')" type="imageUrl" id="imageUrl" class="form-control" #input [value]="patient?.imageUrl">
                 </div>
             <button type="submit" class="btn btn-primary">{{ !patient ? 'Save Patient Details' : 'Edit Patient Details' }}</button>
             <button type="button" class="btn btn-danger" (click)="onCancel()" *ngIf="patient">Cancel</button>

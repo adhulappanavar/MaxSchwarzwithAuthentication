@@ -1,4 +1,4 @@
-import {Component, OnInit} from "angular2/core";
+import {Component, OnInit, Output, EventEmitter} from "angular2/core";
 import {PatientComponent} from "./patient.component";
 import {Patient} from "./patient";
 import {PatientService} from "./patient.service";
@@ -23,6 +23,7 @@ import {PatientService} from "./patient.service";
 })
 export class PatientListComponent {
     pageTitle: string = 'Patients List Component - 4';
+    @Output() editClicked = new EventEmitter<Patient>();
 
         constructor(private _patientService: PatientService) {}
 
