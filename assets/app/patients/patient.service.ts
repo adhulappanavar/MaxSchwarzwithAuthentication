@@ -17,7 +17,8 @@ export class PatientService {
              "patientCode": "Patient Code 2",
              "admissionDate": "March 18, 2002",
              "description": "Patient no 2",
-             "imageUrl": "http://openclipart.org/image/300px/svg_to_png/58471/garden_cart.png"
+             "imageUrl": "http://openclipart.org/image/300px/svg_to_png/58471/garden_cart.png",
+             mongoId : ""
          },
          {
             "patientId": "5",
@@ -25,7 +26,8 @@ export class PatientService {
              "patientCode": "Patient Code 5",
              "admissionDate": "March 18, 2005",
              "description": "Patient no 5",  
-             "imageUrl": "http://openclipart.org/image/300px/svg_to_png/73/rejon_Hammer.png"
+             "imageUrl": "http://openclipart.org/image/300px/svg_to_png/73/rejon_Hammer.png",
+                          mongoId : ""
          },
                   {
             "patientId": "7",
@@ -33,7 +35,8 @@ export class PatientService {
              "patientCode": "Patient Code 7",
              "admissionDate": "March 18, 2007",
              "description": "Patient no 7",  
-             "imageUrl": "http://openclipart.org/image/300px/svg_to_png/73/rejon_Hammer.png"
+             "imageUrl": "http://openclipart.org/image/300px/svg_to_png/73/rejon_Hammer.png",
+                          mongoId : ""
          }
      ];
 
