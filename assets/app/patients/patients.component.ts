@@ -5,12 +5,14 @@ import {PatientListComponent} from "./patient-list.component";
     selector: 'my-patients',
     template: `
  
-        <div class="row spacing">
-            <my-patient-input></my-patient-input>
-        </div>
+
         <div class="row spacing">
             <my-patient-list></my-patient-list>
         </div> 
+        <div class="row spacing">
+            <my-patient-input></my-patient-input>
+        </div>
+
     `,
     directives: [PatientListComponent, PatientInputComponent]
 })

@@ -4,7 +4,7 @@ import {ROUTER_DIRECTIVES} from "angular2/router";
     selector: 'my-header',
     template: `
 
-    <div>
+    <!--div>
         <nav class='navbar navbar-default'>
             <div class='container-fluid'>
                 <a class='navbar-brand'>{{pageTitle}}</a>
@@ -16,13 +16,14 @@ import {ROUTER_DIRECTIVES} from "angular2/router";
                 </ul>
             </div>
         </nav>
-     </div>
+     </div-->
 
         <header class="row">
             <nav class="col-md-8 col-md-offset-2">
                 <ul class="nav nav-pills">
                     <li><a [routerLink]="['Messages']">Messages</a></li>
                     <li><a [routerLink]="['Patients']">Patients</a></li>
+                    <li><a [routerLink]="['Persons']">StarWars-Persons</a></li>
                     <li><a [routerLink]="['Usercomments']">Usercomments</a></li>
                     <li><a [routerLink]="['Auth']">Authentication</a></li>
                 </ul>

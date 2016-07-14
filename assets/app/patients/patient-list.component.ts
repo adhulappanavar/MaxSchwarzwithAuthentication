@@ -29,20 +29,20 @@ export class PatientListComponent {
 
      patients : Patient [] = [];
 
-   // ngOnInit() {
-   //     this.patients = this._patientService.getPatientsLocalJson();
-   // }
-
     ngOnInit() {
-       this._patientService.getPatients()
-            .subscribe(
-                patients => {
-                    this.patients = patients;
-                    this._patientService.patients = patients;
-                },
-                error => console.error(error)
-            );
+        this.patients = this._patientService.getPatientsLocalJson();
     }
+
+//    ngOnInit() {
+//       this._patientService.getPatients()
+//            .subscribe(
+//                patients => {
+//                    this.patients = patients;
+//                    this._patientService.patients = patients;
+//                },
+//                error => console.error(error)
+//            );
+//    }
 
 
 //    belongsToUser() {
