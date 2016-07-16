@@ -7,7 +7,8 @@ import { Person } from '../people/person';
 
 @Injectable()
 export class StarWarsService{
-  private baseUrl: string = 'http://swapi.co/api';
+  //private baseUrl: string = 'http://swapi.co/api';
+    private baseUrl: string = 'http://localhost:3000';
 
   constructor(private http : Http){}
 
@@ -17,11 +18,11 @@ export class StarWarsService{
       .map(mapPersons);
       return people$;
   }
-  getPerson(id: number): Observable<Person> {
-    let person$ = this.http
+  getPeople(id: string): Observable<Person> {
+    let people$ = this.http
       .get(`${this.baseUrl}/people/${id}`)
       .map(mapPerson);
-      return person$;
+      return people$;
   }
   savePerson(person: Person) : Observable<Response>{
     return this.http
@@ -30,20 +31,22 @@ export class StarWarsService{
 }
 
 function mapPersons(response:Response): Person[]{
-   return response.json().results.map(toPerson)
+   return response.json().obj.map(toPerson)
 }
 
 function mapPerson(response:Response): Person{
-   return toPerson(response.json());
+   return toPerson(response.json().obj);
 }
 
 function toPerson(r:any): Person{
   let person = <Person>({
-    id: parseInt(r.url.replace('http://swapi.co/api/people/','').replace('/','')),
+//    id: parseInt(r.url.replace('http://swapi.co/api/people/','').replace('/','')),
+    id: r._id,
     url: r.url,
     name: r.name,
     weight: r.mass,
     height: r.height,
+    mongoId : r._id
   });
   console.log('Parsed person:', person);
   return person;

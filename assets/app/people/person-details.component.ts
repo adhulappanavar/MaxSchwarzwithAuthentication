@@ -22,10 +22,11 @@ export class PersonDetailsComponent implements OnInit {
     }
 
     ngOnInit(){
-        let id = Number.parseInt(this.routeParams.get('id'));
+//        let id = Number.parseInt(this.routeParams.get('id'));
+        let id = this.routeParams.get('id');
         console.log('getting person with id: ', id);
         this.starWarsService
-          .getPerson(id)
+          .getPeople(id)
           .subscribe(p => this.person = p);
     }
 

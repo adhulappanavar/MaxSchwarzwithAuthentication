@@ -16,3 +16,4 @@ schema.post('remove', function(doc) {
 });
 
 module.exports = mongoose.model('Message', schema);
+

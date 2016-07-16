@@ -1,0 +1,1 @@
+mongoimport --db node-angular --collection peoples --drop --file ./people_seed.json
